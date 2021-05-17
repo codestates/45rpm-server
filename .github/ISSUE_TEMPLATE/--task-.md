@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-## Position : 프론트엔드
+## Position : 백엔드
 
 ## 이름 : 
 
