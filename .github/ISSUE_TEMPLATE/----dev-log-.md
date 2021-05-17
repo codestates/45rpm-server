@@ -2,7 +2,7 @@
 name: "✍️ [Dev Log]"
 about: 개인별 dev log
 title: "[✍️Dev Log] 본인이름 / 2021-월-일"
-labels: ''
+labels: Dev log
 assignees: ''
 
 ---
