@@ -10,6 +10,8 @@ const userSchema = new Schema(
     email: String,
     admin: Boolean,
     social: Boolean,
+    question: Array,
+    customizeSet: Array
   },
   { versionKey: false },
 );
