@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 const users = require("../../models/collection/user");
 const bcrypt = require("bcrypt")
+import {encrypt, compare} from "../controllermiddleware/bcrypt"
 
 module.exports = async (req: Request, res: Response) => {
   const {id, password, username, email} = req.body
@@ -20,7 +21,7 @@ module.exports = async (req: Request, res: Response) => {
     if(!userDataId&&!userDataEmail) {
     
       //패스워드 숫자만인경우 toString처리 추가하기
-      const encryptedPwd = bcrypt.hashSync(password, 10)
+      const encryptedPwd = encrypt(password)
       const userModel = new users({id, password:encryptedPwd, username, email, question:[], customizeSet: [], social: false, admin: false});
 
       userModel

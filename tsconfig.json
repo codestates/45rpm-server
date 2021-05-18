@@ -2,7 +2,8 @@
   "compilerOptions": {
     "strict": true,
     "lib": ["ES2015", "ES2016", "ES2017", "ES2018", "ES2019", "ES2020"],
-    "moduleResolution": "Node"
+    "moduleResolution": "Node",
+    "typeRoots": ["./node_modules/@types", "./src/middleware"]
   },
   "exclude": ["/node_modules"]
 }

@@ -1,14 +1,27 @@
+import { NextFunction, Request, Response } from "express"
+
 //토큰에 대한 처리만 진행
 const jwt = require("jsonwebtoken")
 
-jwt.verify()
-//header authorization
-//  있지만 토큰이 다른 토큰
-//  맞는데 expire된것
-//  통과
+module.exports = async(req: Request , res: Response, next: NextFunction) => {
+
+    const validation = req.headers.authorization
 
 
-//토큰 생성
-//  로그인
-//토큰 검증
-//  나머지 서비스
+    if(!validation) {
+        res.status(401).json({message: "Who are you?"})
+    }
+    else {
+        const token = validation.split(" ")[1]
+        const userData = await jwt.verify(token, process.env.SALT )
+       
+        if(!userData) {
+            res.status(401).json({message: "You have wrong access token"})
+        }
+        
+          req.body = {...req.body, userData } 
+        
+    }
+
+    next();
+}
