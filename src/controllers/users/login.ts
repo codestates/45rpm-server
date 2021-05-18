@@ -36,7 +36,7 @@ module.exports = async (req: Request, res: Response) => {
       //클라이언트와 이야기해보기
       res.cookie("authorization", token)
 
-
+      console.log("로그인 성공")
       res.status(200).json({message: "Login Succeed", data : payload})
     }
   }
