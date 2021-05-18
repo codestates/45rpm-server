@@ -11,7 +11,7 @@ const userSchema = new Schema(
     admin: Boolean,
     social: Boolean,
     question: Array,
-    customizeSet: Array
+    customizeSet: Array,
   },
   { versionKey: false },
 );

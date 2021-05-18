@@ -1,5 +1,15 @@
 import { Request, Response } from "express";
 
 module.exports = async (req: Request, res: Response) => {
-  res.status(200).json({ message: "logout" });
+
+
+ 
+  //토큰 유효성 체크
+  //  통과했다면 진행
+  
+
+  //정상 로그아웃
+  res.clearCookie("authorization", { path : "/" } )
+
+  res.status(200).json({ message: "Logout succeed" });
 };
