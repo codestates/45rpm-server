@@ -2,12 +2,12 @@ import { Request, Response } from "express";
 const users = require("../../models/collection/user");
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
-
+import {encrypt, compare} from "../controllermiddleware/bcrypt"
 
 module.exports = async (req: Request, res: Response) => {
   const {id, password} = req.body
   
-  //유저 패스워드 가져오기
+  //유저 정보 가져오기
   const userInfo = await users.findOne({
     id: id
   })
@@ -19,7 +19,7 @@ module.exports = async (req: Request, res: Response) => {
   }  
   else {
     //패스워드 비교하기
-    const verified = await bcrypt.compare(password, userInfo.password)
+    const verified = compare(password, id)
     if(!verified) {
       res.status(401).json({message: "You wrote wrong password"})
     }
