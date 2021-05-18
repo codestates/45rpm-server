@@ -49,7 +49,6 @@ const option: cors.CorsOptions = {
   origin: process.env.ORIGIN
 }
 
-
 app.use(
   cors(option)
 )
