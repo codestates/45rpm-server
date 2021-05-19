@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { encrypt, compare } from "../controllermiddleware/bcrypt";
-const users = require("../../models/collection/user");
+const Users = require("../../models/collection/User");
 
 module.exports = async (req: Request, res: Response) => {
   if (!req.body.userData) {
@@ -11,7 +11,7 @@ module.exports = async (req: Request, res: Response) => {
     if (!verified) {
       res.status(401).json({ message: "Wrong password" });
     } else {
-      const sameEmailCheck = await users.findOne({ email: req.body.email });
+      const sameEmailCheck = await Users.findOne({ email: req.body.email });
 
       const requestUsername = req.body.username;
       const requestEmail = req.body.email;
@@ -26,7 +26,7 @@ module.exports = async (req: Request, res: Response) => {
         // oldPw !== newPw
         if (!sameEmailCheck) {
           // 겹치는 이메일 없는 상태
-          const currentUser = await users.findOne({ id: req.body.userData.id });
+          const currentUser = await Users.findOne({ id: req.body.userData.id });
 
           let changeUsername; // 바꿀 닉네임
           let changeEmail; // 바꿀 이메일
@@ -53,7 +53,7 @@ module.exports = async (req: Request, res: Response) => {
             // 바꿀 패스워드 입력
             changePw = encrypt(requestPw);
           }
-          await users.update(
+          await Users.update(
             { id: req.body.userData.id },
             {
               username: changeUsername,

@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-const users = require("../../models/collection/user");
+const Users = require("../../models/collection/User");
 
 module.exports = async (req: Request, res: Response) => {
   try {
     const decodedData = req.body.userData;
-    const user = await users.findOneAndDelete({ id: decodedData.id });
+    const user = await Users.findOneAndDelete({ id: decodedData.id });
     if (!user) {
       return res.status(404).json({
         message: "User not found",
