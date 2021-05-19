@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-const users = require("../../models/collection/user");
+const Users = require("../../models/collection/User");
 const bcrypt = require("bcrypt");
 import { encrypt, compare } from "../controllermiddleware/bcrypt";
 
@@ -8,12 +8,12 @@ module.exports = async (req: Request, res: Response) => {
 
   try {
     //회원 id 찾기
-    const userDataId = await users.findOne({
+    const userDataId = await Users.findOne({
       id: id,
     });
 
     //회원 email 찾기
-    const userDataEmail = await users.findOne({
+    const userDataEmail = await Users.findOne({
       email: email,
     });
 
@@ -21,7 +21,7 @@ module.exports = async (req: Request, res: Response) => {
     if (!userDataId && !userDataEmail) {
       //패스워드 숫자만인경우 toString처리 추가하기
       const encryptedPwd = encrypt(password);
-      const userModel = new users({
+      const userModel = new Users({
         id,
         password: encryptedPwd,
         username,
