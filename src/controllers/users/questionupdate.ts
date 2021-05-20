@@ -38,5 +38,6 @@ module.exports = async (req: Request, res: Response) => {
 
   } catch(err) {
     console.error(err)
+    res.status(401).json({ message: err });
   }
 };

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
 module.exports = async (req: Request, res: Response) => {
-
+try{
   // console.log("리퀘 바디", req.body)
  
   //토큰 유효성 체크
@@ -14,4 +14,9 @@ module.exports = async (req: Request, res: Response) => {
 
   console.log("로그아웃 성공!")
   res.status(200).json({ message: "Logout succeed" });
+
+} catch(err) {
+  console.error(err)
+  res.status(401).json({ message: err });
+}
 };
