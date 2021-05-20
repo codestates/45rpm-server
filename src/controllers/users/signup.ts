@@ -4,9 +4,9 @@ const bcrypt = require("bcrypt");
 import { encrypt, compare } from "../controllermiddleware/bcrypt";
 
 module.exports = async (req: Request, res: Response) => {
-  const { id, password, username, email } = req.body;
-
+  
   try {
+    const { id, password, username, email } = req.body;
     //회원 id 찾기
     const userDataId = await Users.findOne({
       id: id,
@@ -54,6 +54,7 @@ module.exports = async (req: Request, res: Response) => {
       res.status(403).json({ message: "Same user existed" });
     }
   } catch (err) {
-    console.error(err);
+    console.error(err)
+    res.status(401).json({ message: err });
   }
 };

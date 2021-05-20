@@ -16,9 +16,8 @@ module.exports = async (req: Request, res: Response) => {
       });
       console.log("탈퇴 완료");
     }
-  } catch (error) {
-    res.status(500).json({
-      message: "server error",
-    });
+  } catch (err) {
+    console.error(err)
+    res.status(401).json({ message: err });
   }
 };
