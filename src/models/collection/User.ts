@@ -10,28 +10,26 @@ const customSchema = new Schema(
     title: String,
     songList: Array,
     share: Boolean,
-    order:{
+    order: {
       address: String,
       orderPersonName: String,
       orderPrice: String,
-      orderState: Boolean
-    }
+      orderState: Boolean,
+    },
   },
   { versionKey: false },
-)
+);
 
 const questionSchema = new Schema(
   {
     category: String,
     title: String,
     contents: String,
-    reply: {
-      replyText: String
-    },
-    replyCheck: Boolean
+    reply: Object,
+    replyCheck: Boolean,
   },
   { versionKey: false },
-)
+);
 
 const userSchema = new Schema(
   {
@@ -46,6 +44,5 @@ const userSchema = new Schema(
   },
   { versionKey: false },
 );
-
 
 module.exports = mongoose.model("User", userSchema);
