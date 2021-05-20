@@ -1,6 +1,8 @@
 exports.addcustomorder = require("./addcustomorder");
 exports.addquestion = require("./addquestion");
 exports.addquestionreply = require("./addquestionreply");
+exports.updatereply = require("./updatereply");
+exports.deletereply = require("./deletereply");
 exports.login = require("./login");
 exports.logout = require("./logout");
 exports.questiondelete = require("./questiondelete");
