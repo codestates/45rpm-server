@@ -1,9 +1,7 @@
-// const express = require("express");
 const usersController = require("../../controllers");
-// const router = express.Router();
 const jwtMiddleware = require("../../middleware/jwt");
 
-import { express, router } from "../index";
+import { router } from "../index";
 
 //토큰 인증 필요 없는 라우팅
 router.post("/login", usersController.users.login);

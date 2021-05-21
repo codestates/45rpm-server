@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-const mongoose = require("mongoose");
 const Users = require("../../models/collection/User");
 
 module.exports = async (req: Request, res: Response) => {

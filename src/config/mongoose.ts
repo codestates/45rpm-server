@@ -1,5 +1,4 @@
 const config = require("./config");
-// const mongoose = require("mongoose");
 import { mongoose } from "../index";
 
 module.exports = () => {

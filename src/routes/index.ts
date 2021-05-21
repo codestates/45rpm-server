@@ -2,7 +2,6 @@ import * as express from "express";
 const router = express.Router();
 const userRouter = require("./route/user");
 const customRouter = require("./route/custom");
-// const jwtMiddleware = require("../middleware/jwtToken");
 
 router.get(
   "/",
@@ -15,4 +14,3 @@ router.use("/user", userRouter);
 router.use("/customs", customRouter);
 
 export { router, express };
-module.exports = router;

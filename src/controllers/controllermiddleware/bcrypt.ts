@@ -1,4 +1,3 @@
-import { NextFunction, Request, Response } from "express";
 const Users = require("../../models/collection/User");
 
 //bcrypt에 대한 처리만
@@ -16,4 +15,3 @@ const compare = async (password: String, id: String) => {
 };
 
 export { encrypt, compare };
-module.exports = { encrypt, compare };
