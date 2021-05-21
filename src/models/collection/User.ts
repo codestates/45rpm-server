@@ -1,35 +1,5 @@
-const mongoose = require("mongoose");
-// import { mongoose } from "../index";
+import { mongoose } from "../../index";
 const Schema = mongoose.Schema;
-
-const customSchema = new Schema(
-  {
-    color: String,
-    albumPic: String,
-    recordPic: String,
-    title: String,
-    songList: Array,
-    share: Boolean,
-    order: {
-      address: String,
-      orderPersonName: String,
-      orderPrice: String,
-      orderState: Boolean,
-    },
-  },
-  { versionKey: false },
-);
-
-const questionSchema = new Schema(
-  {
-    category: String,
-    title: String,
-    contents: String,
-    reply: Object,
-    replyCheck: Boolean,
-  },
-  { versionKey: false },
-);
 
 const userSchema = new Schema(
   {
@@ -39,8 +9,8 @@ const userSchema = new Schema(
     email: String,
     admin: Boolean,
     social: Boolean,
-    question: [questionSchema],
-    customizeSet: [customSchema],
+    question: Array,
+    customizeSet: Array,
   },
   { versionKey: false },
 );
