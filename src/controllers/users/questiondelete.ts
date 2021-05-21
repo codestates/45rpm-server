@@ -1,27 +1,10 @@
 import { Request, Response } from "express";
-const Users = require("../../models/collection/User");
+const Question = require("../../models/collection/Question");
 
 module.exports = async (req: Request, res: Response) => {
   try {
-    const { id } = req.body.userData;
     const { questionId } = req.body;
-
-    //유저 도큐먼트를 먼저 찾음
-    const userDocument = await Users.findOne({ id: id });
-
-    console.log("찾은 유저", userDocument);
-
-    //원하는 서브 도큐먼트를 필터링 해서 찾음
-    const targetQuestion = userDocument.question.filter((question: any) => {
-      return question._id.toString() === questionId;
-    })[0];
-
-    console.log("찾은 객체", targetQuestion);
-
-    userDocument.question.pull(targetQuestion._id);
-
-    await userDocument.save();
-
+    await Question.deleteOne({ _id: questionId });
     res.status(200).json({ message: "question deleted" });
   } catch (err) {
     console.error(err);
