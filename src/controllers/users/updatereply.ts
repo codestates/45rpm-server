@@ -10,15 +10,12 @@ module.exports = async (req: Request, res: Response) => {
     } else {
       // admin 일 때
 
-      let ObjectId = require("mongoose").Types.ObjectId;
-      let o_id = new ObjectId(questionId);
-
       const reply = { replyText: replytext };
 
-      await Question.update(
-        { _id: o_id },
-        { $set: { reply: reply, replyCheck: true } },
-      );
+      await Question.findByIdAndUpdate(questionId, {
+        $set: { reply: reply, replyCheck: true },
+      });
+
       res.status(200).json({ message: "Update Reply" });
     }
   } catch (err) {
