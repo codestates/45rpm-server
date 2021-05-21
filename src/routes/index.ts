@@ -13,4 +13,5 @@ router.get(
 router.use("/user", userRouter);
 router.use("/customs", customRouter);
 
-export { router, express };
+export { router };
+module.exports = router;
