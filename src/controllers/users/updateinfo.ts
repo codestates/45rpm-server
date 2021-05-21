@@ -4,12 +4,7 @@ const Users = require("../../models/collection/User");
 
 module.exports = async (req: Request, res: Response) => {
 try{
-
   
-    if (!req.body.userData) {
-      // 인증이 완료되지 않았을 때
-      res.status(401).json({ message: "Wrong Authorization" });
-    } else {
       const verified = await compare(req.body.oldpassword, req.body.userData.id);
       if (!verified) {
         res.status(401).json({ message: "Wrong password" });
@@ -79,7 +74,7 @@ try{
           res.status(403).json({ message: "You already use this password" });
         }
       }
-    }
+    
 } catch(err) {
   console.error(err)
     res.status(401).json({ message: err });

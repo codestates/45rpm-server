@@ -16,7 +16,8 @@ module.exports = async (req: Request, res: Response) => {
       res.status(403).json({ message: "There is no user information" });
     } else {
       //패스워드 비교하기
-      const verified = compare(password, id);
+      const verified = await compare(password, id);
+
       if (!verified) {
         res.status(401).json({ message: "You wrote wrong password" });
       } else {
