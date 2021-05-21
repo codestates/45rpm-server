@@ -1,9 +1,6 @@
-// const express = require("express");
 const customsController = require("../../controllers");
-// const router = express.Router();
-// const jwtMiddleware = require('../middleware/jwtToken');
 
-import { express, router } from "../index";
+import { router } from "../index";
 
 router.get("/my-customs", customsController.customs.getmycustoms);
 router.delete("/delete", customsController.customs.deletecustoms);

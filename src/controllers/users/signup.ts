@@ -1,10 +1,8 @@
 import { Request, Response } from "express";
 const Users = require("../../models/collection/User");
-const bcrypt = require("bcrypt");
-import { encrypt, compare } from "../controllermiddleware/bcrypt";
+import { encrypt } from "../controllermiddleware/bcrypt";
 
 module.exports = async (req: Request, res: Response) => {
-  
   try {
     const { id, password, username, email } = req.body;
     //회원 id 찾기
@@ -54,7 +52,7 @@ module.exports = async (req: Request, res: Response) => {
       res.status(403).json({ message: "Same user existed" });
     }
   } catch (err) {
-    console.error(err)
+    console.error(err);
     res.status(401).json({ message: err });
   }
 };
