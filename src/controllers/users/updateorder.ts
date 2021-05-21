@@ -7,19 +7,19 @@ module.exports = async (req: Request, res: Response) => {
     const { admin } = req.body.userData;
       
     if (admin === false) {
-      // const { address, orderPersonName, orderPrice, customId } = req.body;
+      const { address, orderPersonName, orderPrice, customId } = req.body;
       
-      // const originalOrderDoc = await Customs.findById(customId).order
+      const originalDoc = await Customs.findById(customId)
 
-      // await Customs.findByIdAndUpdate(customId, {
-      //   $set: { 
-      //     order: { 
-      //       address: !address === true ? originalOrderDoc.address : address ,
-      //       orderPersonName:!orderPersonName === true ? originalOrderDoc.orderPersonName : orderPersonName,
-      //       orderPrice: !orderPrice === true ? originalOrderDoc.orderPrice : orderPrice
-      //     } 
-      //   },
-      // });
+      await Customs.findByIdAndUpdate(customId, {
+        $set: { 
+          order: { 
+            address: !address === true ? originalDoc.order.address : address ,
+            orderPersonName:!orderPersonName === true ? originalDoc.order.orderPersonName : orderPersonName,
+            orderPrice: !orderPrice === true ? originalDoc.order.orderPrice : orderPrice
+          } 
+        },
+      });
     res.status(200).json({ message: "Your order is successfully changed" });
     } else {
       const { address, orderPersonName, orderPrice, customId, orderState } = req.body;
