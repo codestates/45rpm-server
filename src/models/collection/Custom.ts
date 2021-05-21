@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const customSchema = new Schema(
   {
+    userId: String,
     color: String,
     albumPic: String,
     recordPic: String,
