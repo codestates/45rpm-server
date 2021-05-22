@@ -12,3 +12,4 @@ exports.signup = require("./signup");
 exports.updateinfo = require("./updateinfo");
 exports.updateorder = require("./updateorder");
 exports.withdrawal = require("./withdrawal");
+exports.socialKakao = require("./socialKakao");
