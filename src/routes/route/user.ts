@@ -6,6 +6,7 @@ import { router } from "../index";
 //토큰 인증 필요 없는 라우팅
 router.post("/login", usersController.users.login);
 router.post("/signup", usersController.users.signup);
+router.post("/oauth/kakao", usersController.users.socialKakao);
 
 //토큰 인증 필요한 라우팅
 router.post("/logout", jwtMiddleware, usersController.users.logout);
