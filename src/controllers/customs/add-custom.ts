@@ -25,8 +25,6 @@ module.exports = async (req: Request, res: Response) => {
     newCustom.save();
 
     const userDocument = await Users.findOne({ id: id });
-    console.log(id);
-    console.log(userDocument);
 
     userDocument.customizeSet.push(String(newCustom._id));
 
