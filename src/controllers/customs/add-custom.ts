@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-const Custom = require("../../models/collection/Custom");
+const Customs = require("../../models/collection/Custom");
 const Users = require("../../models/collection/User");
 
 module.exports = async (req: Request, res: Response) => {
@@ -11,7 +11,7 @@ module.exports = async (req: Request, res: Response) => {
     const albumPic = files.albumPic[0];
     const recordPic = files.recordPic[0];
 
-    const newCustom = await Custom.create({
+    const newCustom = await Customs.create({
       userId: id,
       color: color,
       title: title,

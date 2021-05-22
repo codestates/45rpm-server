@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-const Custom = require("../../models/collection/Custom");
+const Customs = require("../../models/collection/Custom");
 
 module.exports = async (req: Request, res: Response) => {
   // res.status(200).json({ message: "shared" });
   try {
-    const sharedCustom = await Custom.find({ share: true });
+    const sharedCustom = await Customs.find({ share: true });
 
     console.log(sharedCustom);
 
