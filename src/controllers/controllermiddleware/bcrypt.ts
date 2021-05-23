@@ -8,6 +8,8 @@ const encrypt = (password: String) => {
 };
 
 const compare = async (password: String, id: String) => {
+  console.log("비번 인자 확인", password)
+  console.log("아이디 인자 확인", id)
   const userInfo = await Users.findOne({
     id: id,
   });

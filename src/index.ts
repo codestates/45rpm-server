@@ -33,13 +33,13 @@ app.use(bodyParser.json());
 
 //cors 옵션
 const option: cors.CorsOptions = {
-  allowedHeaders: [
-    "Origin",
-    "X-Requested-With",
-    "Content-Type",
-    "Accept",
-    "X-Access-Token",
-  ],
+  // allowedHeaders: [
+  //   "Origin",
+  //   "X-Requested-With",
+  //   "Content-Type",
+  //   "Accept",
+  //   "X-Access-Token",
+  // ],
   credentials: true,
   methods: "GET,POST,PATCH,DELETE,OPTIONS",
   origin: process.env.ORIGIN,
