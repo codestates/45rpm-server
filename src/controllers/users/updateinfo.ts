@@ -4,6 +4,7 @@ const Users = require("../../models/collection/User");
 
 module.exports = async (req: Request, res: Response) => {
   try {
+    console.log("리퀘 인자 확인", req.body)
     const verified = await compare(req.body.oldpassword, req.body.userData.id);
     if (!verified) {
       res.status(401).json({ message: "Wrong password" });
