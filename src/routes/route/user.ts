@@ -9,6 +9,7 @@ router.post("/signup", usersController.users.signup);
 router.post("/oauth/kakao", usersController.users.socialKakao);
 
 //토큰 인증 필요한 라우팅
+router.get("/getuserinfo", jwtMiddleware, usersController.users.getuserinfo);
 router.post("/logout", jwtMiddleware, usersController.users.logout);
 router.patch("/updateinfo", jwtMiddleware, usersController.users.updateinfo);
 router.delete("/withdrawal", jwtMiddleware, usersController.users.withdrawal);
