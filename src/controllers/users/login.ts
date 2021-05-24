@@ -35,7 +35,10 @@ module.exports = async (req: Request, res: Response) => {
         const token = jwt.sign(payload, process.env.SALT, { expiresIn: "1d" });
 
         //클라이언트와 이야기해보기
-        res.cookie("authorization", token);
+        res.cookie("authorization", token, {
+          path: "/",
+          domain: process.env.DOMAIN,
+        });
 
         console.log("로그인 성공");
         res.status(200).json({ message: "Login Succeed", data: payload });
