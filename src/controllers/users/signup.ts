@@ -48,8 +48,20 @@ module.exports = async (req: Request, res: Response) => {
           });
         });
     } else {
-      //아이디 이메일중 하나라도 중복값이 존재하면 에러
-      res.status(403).json({ message: "Same user existed" });
+      if(userDataId) {
+        if(userDataEmail) {
+          //아이디와 이메일 모두 존재할때
+          res.status(403).json({message: "These ID and Email are already used on other user"})
+        }
+        else{
+          //아이디만 이미 존재할때
+          res.status(403).json({message: "This ID is already used on other user"})
+        }
+      }
+      else {
+        //이메일만 이미 존재할때
+        res.status(403).json({message: "This Email is already used on other user"})
+      }
     }
   } catch (err) {
     console.error(err);
