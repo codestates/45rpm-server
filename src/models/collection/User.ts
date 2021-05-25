@@ -7,6 +7,8 @@ const userSchema = new Schema(
     password: String,
     username: String,
     email: String,
+    profileUrl: String,
+    thumbnailUrl: String,
     admin: Boolean,
     social: Boolean,
     question: Array,
