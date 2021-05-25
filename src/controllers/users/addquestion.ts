@@ -18,16 +18,16 @@ module.exports = async (req: Request, res: Response) => {
           min = String(t.getMinutes());
           
       if (month.length < 2) {
-        return month = "0" + month;
+        month = "0" + month;
       }
       if (day.length < 2) {
-        return day = "0" + day;
+        day = "0" + day;
       }
       if(hour.length < 2) {
-        return hour = "0" + hour
+        hour = "0" + hour
       }
       if(min.length < 2) {
-        return min = "0" + min
+        min = "0" + min
       }
   
       return `${year}-${month}-${day} ${hour}:${min}`
