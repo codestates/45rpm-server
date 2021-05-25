@@ -5,7 +5,7 @@ import { encrypt } from "../controllermiddleware/bcrypt";
 
 module.exports = async (req: Request, res: Response) => {
   try {
-    if(!req.body.data.kakao_account.email) {
+    if(!req.body.data.kakao_account.email || !req.body.data.kakao_account.profile.nickname) {
       res.status(403).json({message: "You should agree all our authorization asking list"})
     }
     else {
