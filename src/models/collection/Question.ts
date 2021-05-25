@@ -10,6 +10,7 @@ const questionSchema = new Schema(
     contents: String,
     reply: Object,
     replyCheck: Boolean,
+    createdAt: String
   },
   { versionKey: false },
 );

@@ -8,7 +8,31 @@ module.exports = async (req: Request, res: Response) => {
     const { id } = req.body.userData;
     const { category, title, contents } = req.body;
 
-    
+    //현재 시간
+    const formatTime = () => {
+      let t = new Date(),
+          year = String(t.getFullYear()),
+          month = String(t.getMonth() + 1),
+          day = String(t.getDate()),
+          hour = String(t.getHours()),
+          min = String(t.getMinutes());
+          
+      if (month.length < 2) {
+        return month = "0" + month;
+      }
+      if (day.length < 2) {
+        return day = "0" + day;
+      }
+      if(hour.length < 2) {
+        return hour = "0" + hour
+      }
+      if(min.length < 2) {
+        return min = "0" + min
+      }
+  
+      return `${year}-${month}-${day} ${hour}:${min}`
+  }
+
     //새로운 문의 도큐먼트 생성
     const newQuestion = await Question.create({
       userId: id,
@@ -17,6 +41,7 @@ module.exports = async (req: Request, res: Response) => {
       contents,
       reply: null,
       replyCheck: false,
+      createdAt: formatTime()
     });
 
     console.log("새로 생긴 문의", newQuestion);
