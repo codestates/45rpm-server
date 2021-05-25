@@ -5,7 +5,9 @@ import { encrypt } from "../controllermiddleware/bcrypt";
 
 module.exports = async (req: Request, res: Response) => {
   try {
-    const email: String = req.body.data.kakao_account.email;
+    const {email, profile: {nickname, profile_image_url, thumbnail_image_url}} = req.body.data.kakao_account
+
+    // const email: String = req.body.data.kakao_account.email;
     const id: String = email.split("@")[0]; // 자신의 카카오톡 id
     const encryptedPwd: String = encrypt(email);
 
@@ -22,8 +24,10 @@ module.exports = async (req: Request, res: Response) => {
       const newUser = new Users({
         id: id,
         password: encryptedPwd,
-        username: id,
+        username: nickname,
         email: email,
+        profileUrl: !profile_image_url === true ? null : profile_image_url,
+        thumbnailUrl: !thumbnail_image_url === true ? null : thumbnail_image_url,
         question: [],
         customizeSet: [],
         social: true,
