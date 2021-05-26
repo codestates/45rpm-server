@@ -7,7 +7,7 @@ module.exports = async (req: Request, res: Response) => {
     const { id } = req.body.userData;
     const myCustoms = await Customs.find({ userId: id });
     res.status(200).sendFile("public/index.html", {
-      root: path.join(myCustoms[0].albumPic),
+      root: path.join(myCustoms[0].recordPic),
     });
   } catch (err) {
     console.error(err);
