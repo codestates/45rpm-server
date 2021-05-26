@@ -21,8 +21,9 @@ module.exports = async (req: Request, res: Response) => {
        */
   
       const findUser = await Users.findOne({
-        email: email,
+        id: id,
       });
+      console.log("유저 데이터 확인", findUser)
   
       if (!findUser) {
         const newUser = new Users({
@@ -41,11 +42,11 @@ module.exports = async (req: Request, res: Response) => {
         newUser.save();
       }
       const payload = {
-        id: id,
-        username: id,
-        email: email,
-        admin: false,
-        social: true,
+        id: findUser.id,
+        username: findUser.username,
+        email: findUser.email,
+        admin: findUser.admin,
+        social: findUser.social,
       };
   
       const token = jwt.sign(payload, process.env.SALT, { expiresIn: "1d" });
