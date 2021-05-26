@@ -11,13 +11,16 @@ module.exports = async (req: Request, res: Response) => {
     const albumPic = files.albumPic[0];
     const recordPic = files.recordPic[0];
 
+    console.log(albumPic);
+    console.log(recordPic);
+
     const newCustom = await Customs.create({
       userId: id,
       color: color,
       title: title,
       songList: songList,
-      albumPic: albumPic.path,
-      recordPic: recordPic.path,
+      albumPic: albumPic.filename,
+      recordPic: recordPic.filename,
       share: false,
       order: null,
     });

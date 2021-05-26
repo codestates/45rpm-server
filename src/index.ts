@@ -46,6 +46,7 @@ const option: cors.CorsOptions = {
 };
 
 app.use(cors(option));
+app.use(express.static("src/middleware/uploads"));
 
 app.use("/", router);
 

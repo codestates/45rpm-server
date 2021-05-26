@@ -9,6 +9,16 @@ router.get(
   jwtMiddleware,
   customsController.customs.getmycustoms,
 );
+router.get(
+  "/getalbumphoto",
+  jwtMiddleware,
+  customsController.customs.getmycustoms,
+);
+router.get(
+  "/getrecordphoto",
+  jwtMiddleware,
+  customsController.customs.getmycustoms,
+);
 router.delete(
   "/delete",
   jwtMiddleware,
