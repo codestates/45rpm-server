@@ -7,6 +7,7 @@ import { router } from "../index";
 router.post("/login", usersController.users.login);
 router.post("/signup", usersController.users.signup);
 router.post("/oauth/kakao", usersController.users.socialKakao);
+router.post("/oauth/google", usersController.user.socialGoogle)
 
 //토큰 인증 필요한 라우팅
 router.get("/getuserinfo", jwtMiddleware, usersController.users.getuserinfo);
