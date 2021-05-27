@@ -14,3 +14,4 @@ exports.updateorder = require("./updateorder");
 exports.withdrawal = require("./withdrawal");
 exports.socialKakao = require("./socialKakao");
 exports.getuserinfo = require("./getuserinfo");
+exports.socialGoogle = require("./socialGoogle")
