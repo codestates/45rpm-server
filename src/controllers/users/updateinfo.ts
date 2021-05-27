@@ -17,7 +17,7 @@ module.exports = async (req: Request, res: Response) => {
 
       if (!isSamePw) {
         // oldPw !== newPw
-        if (!sameEmailCheck) {
+        if (!sameEmailCheck || sameEmailCheck.id === id ) {
           // 겹치는 이메일 없는 상태
           const currentUser = await Users.findOne({ id: id });
           await Users.findByIdAndUpdate(currentUser._id, {
@@ -32,13 +32,8 @@ module.exports = async (req: Request, res: Response) => {
           });
           res.status(200).json({ message: "Update info" });
         } else {
-          if (sameEmailCheck.id === id) {
-            // 수정하려는 이메일이 기존 이메일과 같음
-            res.status(403).json({ message: "This is your Origin Email" });
-          } else {
             // 수정하려는 이메일을 이미 누군가 쓰고 있음
             res.status(403).json({ message: "This Email is already used" });
-          }
         }
       } else {
         // 수정하려는 비밀번호가 기존 비밀번호와 같음
