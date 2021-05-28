@@ -13,12 +13,15 @@ module.exports = async (req: Request, res: Response) => {
 
     console.log(albumPic);
     console.log(recordPic);
+    console.log(">>>>songlist", songList);
+    const song = songList.split(",");
+    console.log("<>>>song", song);
 
     const newCustom = await Customs.create({
       userId: id,
       color: color,
       title: title,
-      songList: songList,
+      songList: song,
       albumPic: albumPic.filename,
       recordPic: recordPic.filename,
       share: false,
