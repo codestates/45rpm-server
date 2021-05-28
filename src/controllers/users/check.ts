@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 import { compare } from "../controllermiddleware/bcrypt";
 
 module.exports = async (req: Request, res: Response) => {
-
   console.log("body?????????????", req.body);
 
   if (!req.body.id) {
@@ -18,7 +17,6 @@ module.exports = async (req: Request, res: Response) => {
     }
 
     // delete data.dataValues.password;
-
 
     const payload = {
       id: data.id,
@@ -35,7 +33,7 @@ module.exports = async (req: Request, res: Response) => {
       domain: process.env.DOMAIN,
     });
 
-    res.status(200).json({ message: "find data", data: data });
+    res.status(200).json({ message: "Check Succeed", data: payload });
   } catch (err) {
     console.error(err);
     res.status(401).json({ message: err });
