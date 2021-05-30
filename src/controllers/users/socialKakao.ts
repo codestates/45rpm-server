@@ -40,21 +40,35 @@ module.exports = async (req: Request, res: Response) => {
         });
   
         newUser.save();
-      }
-      const payload = {
-        id: findUser.id,
-        username: findUser.username,
-        email: findUser.email,
-        admin: findUser.admin,
-        social: findUser.social,
-      };
-  
-      const token = jwt.sign(payload, process.env.SALT, { expiresIn: "1d" });
-  
-      res.cookie("authorization", token);
-  
-      res.status(200).json({ message: "Kakao Login Succeed", data: payload });
 
+        const payload = {
+          id: id,
+          username: nickname,
+          email: email,
+          admin: false,
+          social: true
+        }
+        
+        const token = jwt.sign(payload, process.env.SALT, { expiresIn: "1d" });
+
+        res.cookie("authorization", token);
+        res.status(200).json({ message: "Kakao Login Succeed", data: payload });
+      }
+
+      else {
+
+        const payload = {
+          id: findUser.id,
+          username: findUser.username,
+          email: findUser.email,
+          admin: findUser.admin,
+          social: findUser.social,
+        };
+    
+        const token = jwt.sign(payload, process.env.SALT, { expiresIn: "1d" });
+        res.cookie("authorization", token);
+        res.status(200).json({ message: "Kakao Login Succeed", data: payload });
+      }
     }
   } catch (err) {
     console.error(err);
