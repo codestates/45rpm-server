@@ -4,8 +4,16 @@ module.exports = async (req, res) => {
   try {
     const userId = req.body.userData.id;
     const userInfo = await Users.findOne({ id: userId });
-    const { id, username, email, admin, social, question, customizeSet } =
-      userInfo;
+    const {
+      id,
+      username,
+      email,
+      admin,
+      social,
+      question,
+      customizeSet,
+      profileUrl,
+    } = userInfo;
 
     const payload = {
       id,
@@ -15,6 +23,7 @@ module.exports = async (req, res) => {
       social,
       question,
       customizeSet,
+      profileUrl,
     };
     res.status(200).json({ message: "get userinfo", data: payload });
   } catch (err) {
