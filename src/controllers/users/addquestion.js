@@ -38,7 +38,7 @@ module.exports = async (req, res) => {
       category,
       title,
       contents,
-      reply: null,
+      reply: "",
       replyCheck: false,
       createdAt: formatTime(),
     });

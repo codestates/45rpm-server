@@ -8,7 +8,7 @@ const questionSchema = new Schema(
     category: String,
     title: String,
     contents: String,
-    reply: Object,
+    reply: String,
     replyCheck: Boolean,
     createdAt: String,
   },
