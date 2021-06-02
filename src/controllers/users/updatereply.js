@@ -9,10 +9,8 @@ module.exports = async (req, res) => {
     } else {
       // admin 일 때
 
-      const reply = { replyText: replytext };
-
       await Question.findByIdAndUpdate(questionId, {
-        $set: { reply: reply, replyCheck: true },
+        $set: { reply: replytext, replyCheck: true },
       });
 
       res.status(200).json({ message: "Update Reply" });
