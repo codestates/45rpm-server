@@ -3,7 +3,7 @@ const Customs = require("../../models/collection/Custom");
 module.exports = async (req, res) => {
   try {
     // console.log("응답", req.query);
-    let count = req.data.count;
+    let count = req.query.count;
     let skip = count * 6;
     console.log("카운트", count);
     console.log("스킵", skip);
