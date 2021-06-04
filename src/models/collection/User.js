@@ -10,7 +10,7 @@ const userSchema = new Schema(
     profileUrl: String,
     thumbnailUrl: String,
     admin: Boolean,
-    social: Boolean,
+    social: String,
     question: Array,
     customizeSet: Array,
   },

@@ -3,7 +3,8 @@ const Users = require("../../models/collection/User");
 module.exports = async (req, res) => {
   try {
     const userId = req.body.userData.id;
-    const userInfo = await Users.findOne({ id: userId });
+    const socialKind = req.body.userData.social;
+    const userInfo = await Users.findOne({ id: userId, social: socialKind });
     const {
       id,
       username,

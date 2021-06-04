@@ -9,6 +9,7 @@ module.exports = async (req, res) => {
     //유저 정보 가져오기
     const userInfo = await Users.findOne({
       id: id,
+      social: "noSocial",
     });
 
     if (!userInfo) {
