@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
         email,
         question: [],
         customizeSet: [],
-        social: false,
+        social: "noSocial",
         admin: false,
       });
 

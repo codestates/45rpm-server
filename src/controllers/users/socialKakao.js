@@ -28,6 +28,7 @@ module.exports = async (req, res) => {
 
       const findUser = await Users.findOne({
         id: id,
+        social: "kakao",
       });
       console.log("유저 데이터 확인", findUser);
 
@@ -42,7 +43,7 @@ module.exports = async (req, res) => {
             !thumbnail_image_url === true ? null : thumbnail_image_url,
           question: [],
           customizeSet: [],
-          social: true,
+          social: "kakao",
           admin: false,
         });
 
@@ -53,7 +54,7 @@ module.exports = async (req, res) => {
           username: nickname,
           email: email,
           admin: false,
-          social: true,
+          social: "kakao",
         };
 
         const token = jwt.sign(payload, process.env.SALT, { expiresIn: "1d" });
