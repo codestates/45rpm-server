@@ -1,6 +1,7 @@
 const Users = require("../../models/collection/User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("../controllermiddleware/bcrypt");
+require("dotenv").config();
 
 module.exports = async (req, res) => {
   try {
@@ -41,9 +42,11 @@ module.exports = async (req, res) => {
 
       const token = jwt.sign(payload, process.env.SALT, { expiresIn: "1d" });
 
-      res.cookie("authorization", token);
+      res.cookie("authorization", token, { domain: process.env.DOMAIN });
 
-      res.status(200).json({ message: "Google Login Succeed", data: payload });
+      res
+        .status(200)
+        .json({ message: "Google Login Succeed", data: payload, token: token });
     } else {
       const payload = {
         id: findUser.id,
@@ -55,9 +58,11 @@ module.exports = async (req, res) => {
 
       const token = jwt.sign(payload, process.env.SALT, { expiresIn: "1d" });
 
-      res.cookie("authorization", token);
+      res.cookie("authorization", token, { domain: process.env.DOMAIN });
 
-      res.status(200).json({ message: "Google Login Succeed", data: payload });
+      res
+        .status(200)
+        .json({ message: "Google Login Succeed", data: payload, token: token });
     }
   } catch (err) {
     console.error(err);
