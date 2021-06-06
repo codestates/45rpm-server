@@ -2,6 +2,7 @@ const Customs = require("../../models/collection/Custom");
 
 module.exports = async (req, res) => {
   try {
+    // 최신 데이터부터 제공하기 위한 역 sort
     const sharedCustom = await Customs.find({ share: true }).sort({
       field: "desc",
       _id: -1,
