@@ -10,9 +10,10 @@ const mongoose = require("mongoose");
 const mongooseConfig = require("./config/mongoose");
 
 const app = express();
+//몽고db와 연결위한 mongoose 설정값 적용
 const db = mongooseConfig();
 
-//클라이언트 연결 뒤 확인
+//세션 설정
 app.use(
   session({
     secret: "@Black Cicle",
@@ -34,19 +35,14 @@ app.use(bodyParser.json());
 
 //cors 옵션
 const option = {
-  // allowedHeaders: [
-  //   "Origin",
-  //   "X-Requested-With",
-  //   "Content-Type",
-  //   "Accept",
-  //   "X-Access-Token",
-  // ],
   credentials: true,
   methods: "GET,POST,PATCH,DELETE,OPTIONS",
   origin: process.env.ORIGIN,
 };
 
+//cors 적용
 app.use(cors(option));
+//upload 미들웨어 적용
 app.use(express.static("src/middleware/uploads"));
 
 app.use("/", router);
