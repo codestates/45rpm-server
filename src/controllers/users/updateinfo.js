@@ -5,13 +5,18 @@ const Users = require("../../models/collection/User");
 module.exports = async (req, res) => {
   try {
     console.log("리퀘 인자 확인", req.body);
+
+    // 입력된 현재 비밀번호가 DB의 비밀번호와 일치하는지 확인
     const verified = await bcrypt.compare(
       req.body.oldpassword,
       req.body.userData.id,
     );
+
     if (!verified) {
+      // 현재 비밀번호를 제대로 입력하지 못했을 시 정보 수정 불가
       res.status(401).json({ message: "Wrong password" });
     } else {
+      // 현재 비밀번호를 제대로 입력한 경우 수정 가능
       const { id } = req.body.userData;
       const { username, email, newpassword } = req.body;
 
@@ -19,7 +24,7 @@ module.exports = async (req, res) => {
       const sameEmailCheck = await Users.findOne({ email: email });
 
       if (!isSamePw) {
-        // oldPw !== newPw
+        // 수정하려는 비밀번호와 원래 비밀번호가 같지 않을 때 (비밀번호 수정 가능)
         if (!sameEmailCheck || sameEmailCheck.id === id) {
           // 겹치는 이메일 없는 상태
           const currentUser = await Users.findOne({ id: id });

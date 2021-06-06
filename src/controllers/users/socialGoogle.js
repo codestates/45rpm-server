@@ -8,7 +8,10 @@ module.exports = async (req, res) => {
     console.log("리퀘 바디", req.body);
     const { email, name, picture } = req.body.data;
 
+    // 구글 아이디
     const id = email.split("@")[0];
+
+    // 비밀번호 지정 - 디폴트 비밀번호는 본인의 구글 이메일
     const encryptedPwd = bcrypt.encrypt(email);
 
     const findUser = await Users.findOne({
@@ -17,6 +20,7 @@ module.exports = async (req, res) => {
     });
     console.log("유저 데이터 확인", findUser);
 
+    // 기존에 똑같은 정보로 가입한 적 없을 때
     if (!findUser) {
       const newUser = new Users({
         id: id,
@@ -49,6 +53,7 @@ module.exports = async (req, res) => {
         .status(200)
         .json({ message: "Google Login Succeed", data: payload, token: token });
     } else {
+      // 기존에 가입을 했을 경우
       const payload = {
         id: findUser.id,
         username: findUser.username,

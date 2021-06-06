@@ -7,6 +7,7 @@ module.exports = async (req, res) => {
     const originalDoc = await Customs.findById(customId);
     console.log("기존 커스텀", originalDoc);
 
+    // 기존 커스텀의 share 정보 toggle
     await Customs.findByIdAndUpdate(customId, { share: !originalDoc.share });
 
     res.status(200).json({

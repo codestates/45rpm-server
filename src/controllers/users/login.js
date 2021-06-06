@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
           social,
         };
 
-        //만료 기간은 추후 수정 예정
+        // 토큰 생성
         const token = jwt.sign(payload, process.env.SALT, { expiresIn: "1d" });
 
         //클라이언트와 이야기해보기
