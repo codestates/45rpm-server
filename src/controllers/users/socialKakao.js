@@ -6,14 +6,6 @@ require("dotenv").config();
 module.exports = async (req, res) => {
   try {
     console.log("데이터", req.body.data);
-    // if (
-    //   // // !req.body.data.kakao_account.email ||
-    //   // !req.body.data.kakao_account.profile.nickname
-    // ) {
-    //   res.status(403).json({
-    //     message: "You should agree all our authorization asking list",
-    //   });
-    // } else {
     const {
       email,
       profile: { nickname, profile_image_url, thumbnail_image_url },
